@@ -3,11 +3,13 @@ package routers
 import (
 	"github.com/HLSO6/go-gin-example/middleware/jwt"
 	"github.com/HLSO6/go-gin-example/pkg/setting"
+	"github.com/HLSO6/go-gin-example/pkg/upload"
 	"github.com/HLSO6/go-gin-example/routers/api"
 	v1 "github.com/HLSO6/go-gin-example/routers/api/v1"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	"net/http"
 )
 
 // InitRouter initialize routing information
@@ -18,11 +20,13 @@ func InitRouter() *gin.Engine {
 
 	r.Use(gin.Recovery())
 
-	gin.SetMode(setting.RunMode)
+	gin.SetMode(setting.ServerSetting.RunMode)
+
+	r.StaticFS("/upload/images", http.Dir(upload.GetImageFullPath()))
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
 	r.GET("/auth", api.GetAuth)
+	r.POST("/upload", api.UploadImage)
 
 	//r.GET("/test", func(c *gin.Context) {
 	//	c.JSON(200, gin.H{

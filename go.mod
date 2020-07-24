@@ -32,8 +32,11 @@ replace (
 	github.com/HLSO6/go-gin-example/middleware/jwt => ./go-gin-example/middleware/jwt
 	github.com/HLSO6/go-gin-example/models => ./go-gin-example/models
 	github.com/HLSO6/go-gin-example/pkg/e => ./go-gin-example/pkg/e
+	github.com/HLSO6/go-gin-example/pkg/file => ./go-gin-example/pkg/file
 	github.com/HLSO6/go-gin-example/pkg/logging => ./go-gin-example/pkg/logging
 	github.com/HLSO6/go-gin-example/pkg/setting => ./go-gin-example/pkg/setting
+
+	github.com/HLSO6/go-gin-example/pkg/upload => ./go-gin-example/pkg/upload
 	github.com/HLSO6/go-gin-example/pkg/util => ./go-gin-example/pkg/util
 	github.com/HLSO6/go-gin-example/routers => ./go-gin-example/routers
 	github.com/HLSO6/go-gin-example/routers/api/v1/ => ./go-gin-example/routers/api/v1/

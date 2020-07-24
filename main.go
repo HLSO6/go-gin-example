@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/HLSO6/go-gin-example/models"
+	"github.com/HLSO6/go-gin-example/pkg/logging"
 	"github.com/HLSO6/go-gin-example/pkg/setting"
 	"github.com/HLSO6/go-gin-example/routers"
 	"log"
@@ -37,14 +39,19 @@ func main() {
 	//		"message":"test",
 	//	})
 	//})
+
+	setting.Setup()
+	models.Setup()
+	logging.Setup()
+
 	//路由独立出来
 	router := routers.InitRouter()
 
 	s := &http.Server{
-		Addr:           fmt.Sprintf(":%d", setting.HttpPort),
+		Addr:           fmt.Sprintf(":%d", setting.ServerSetting.HttpPort),
 		Handler:        router,
-		ReadTimeout:    setting.ReadTimeout,
-		WriteTimeout:   setting.WriteTimeout,
+		ReadTimeout:    setting.ServerSetting.ReadTimeout,
+		WriteTimeout:   setting.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
 	//s.ListenAndServe()
